@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col text-center ">
+                <h1>URL Shortener</h1>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-md-12">
+                <form action="/short" method="post" class="my-4 form-inline">
+                    <label for="fullUrl" class="sr-only">Url</label>
+                    <input required placeholder="Url" type="text" name="fullUrl" id="full"
+                        class="form-control col mr-2">
+                    <div class="col-md-12 text-center mt-2">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Sl No.</th>
+                            <th>Full Url</th>
+                            <th>Short Url</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var count=1 %>
+                            <% urls.map((e)=>{ %>
+                                <tr>
+                                    <td>
+                                        <%= count++ %>
+                                    </td>
+                                    <td>
+                                        <%= e.full %>
+                                    </td>
+                                    <td>
+                                        <a href="<%= e.short %>">
+                                            <%= e.short %>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/delete/<%= e._id %>" class="btn btn-sm btn-danger">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
