@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 var app = express();
 var path = require("path");
 var bodyParser = require("body-parser");
+const port = process.env.PORT || 5000;
 
 app.use("/static", express.static(path.join(__dirname, "public")));
 
@@ -57,4 +58,6 @@ app.get("/delete/:id", async (req, res) => {
   res.redirect("/");
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(port, () => {
+  console.log(`App listening at http://localhost:${port}`);
+});
